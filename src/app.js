@@ -4,9 +4,11 @@ import dotenv from "dotenv"
 import morgan from "morgan";
 import AuthRouter from "./Routes/Auth/Auth.routes.js"
 import { __dirname } from "./Utils/RouteAbsolute.util.js"
+
 //Config to Express
 const app = express()
 const PORT = process.env.PORT || 3000
+
 
 //Middlewares Global
 app.use(express.json())
