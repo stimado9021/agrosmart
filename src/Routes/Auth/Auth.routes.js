@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { LogOutControllerSession,RegisterControllerSession,LoginControllerSession } from "../../Controllers/Auth/Auth.controller.js";
+import User from '../../DTO/Models/Users/User.model.js'
 
 const router = Router()
 
