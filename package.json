@@ -4,7 +4,7 @@
   "main": "App.js",
   "type": "module",
   "scripts": {
-    "start": "node --watch Src/App.js",
+    "start": "node --watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
