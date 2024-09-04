@@ -2,7 +2,7 @@ import { Router } from "express";
 import { LogOutControllerSession,RegisterControllerSession,LoginControllerSession } from "../../Controllers/Auth/Auth.controller.js";
 import User from '../../DTO/Models/Users/User.model.js'
 
-const router = Router()
+const router = Router();
 
 /**
  * @swagger
@@ -38,7 +38,7 @@ const router = Router()
 
 /**
  * @swagger
- * /login:
+ * /api/doc/login:
  *   post:
  *     summary: Iniciar sesión del usuario
  *     description: Endpoint para que un usuario inicie sesión.
@@ -58,7 +58,7 @@ router.post("/login",LoginControllerSession)
 
 /**
  * @swagger
- * /register:
+ * /api/doc//register:
  *   post:
  *     summary: Registro de usuario
  *     description: Endpoint para registrar un nuevo usuario.
@@ -78,7 +78,7 @@ router.post("/register",RegisterControllerSession)
 
 /**
  * @swagger
- * /logOut:
+ * /api/doc//logOut:
  *   delete:
  *     summary: Cerrar sesión del usuario
  *     description: Endpoint para cerrar la sesión de un usuario.

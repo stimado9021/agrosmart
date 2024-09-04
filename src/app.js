@@ -4,7 +4,9 @@ import dotenv from "dotenv"
 import morgan from "morgan";
 import AuthRouter from "./Routes/Auth/Auth.routes.js"
 import { __dirname } from "./Utils/RouteAbsolute.util.js"
-import path from 'path'
+
+import path from "path";
+import cors from "cors";
 
 
 import swaggerjsdoc from 'swagger-jsdoc'
@@ -34,6 +36,7 @@ const swaggerSpec ={
 const swagger = swaggerjsdoc(swaggerSpec);
 
 //Middlewares Global
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 app.use(express.static(__dirname + "/public"));
