@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
 import User from '../DTO/Models/Users/User.model.js';
+
 dotenv.config();
 console.log(process.env.DB_HOST)
 export const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -15,6 +16,8 @@ export const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER,
   },
   logging: console.log 
 });
+
+
 sequelize.authenticate()
   .then(() => {
     console.log('Conexión a la base de datos exitosa.');
