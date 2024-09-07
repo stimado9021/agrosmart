@@ -6,38 +6,6 @@ const router = Router();
 
 /**
  * @swagger
- * components:
- *  schemas:
- *    User:
- *      type:object
- *      properties:
- *        email:
- *         type:string
- *         description:email user
- *        nombre:
- *         type:string
- *         description:name user
- *        apellido:
- *          type:string
- *          description:apellido user   
- *        password:   
- *          type:string
- *          description:password user
- *      required
- *       - email
- *       - nombre
- *       - apellido
- *       - password
- *      example 
- *       email:orozco@gmail.com           
- *       nombre:rafael
- *       apellido:orozco
- *       password:12345678
- * 
- */
-
-/**
- * @swagger
  * /api/doc/login:
  *   post:
  *     summary: Iniciar sesión del usuario
@@ -58,7 +26,7 @@ router.post("/login",LoginControllerSession)
 
 /**
  * @swagger
- * /api/doc//register:
+ * /api/doc/register:
  *   post:
  *     summary: Registro de usuario
  *     description: Endpoint para registrar un nuevo usuario.
@@ -78,7 +46,7 @@ router.post("/register",RegisterControllerSession)
 
 /**
  * @swagger
- * /api/doc//logOut:
+ * /api/doc/logOut:
  *   delete:
  *     summary: Cerrar sesión del usuario
  *     description: Endpoint para cerrar la sesión de un usuario.
