@@ -1,4 +1,4 @@
-import { getToday } from "../../Service/clima/Clima.service.js";
+import { getToday } from "../../Service/Clima/Clima.service.js";
 import { formatearClima } from "../../Utils/FormatWeatherData.js";
 
 export const weatherForecast = async (req, res) => {
@@ -6,10 +6,13 @@ export const weatherForecast = async (req, res) => {
 
   if (!lat || !lon)
     res.status(404).json({ error: "Falta longitude o latitud" });
-  console.log('paso por aqui')
+
   try {
+    console.log(process.env.OPEN_WEATHER_API_KEY)
     const forecast = formatearClima((await getToday(lat, lon)).data);
+    
     res.json(forecast);
+    
   } catch (error) {
     res.status(404).json({ error: `no se pudo buscar el clima ${error}` });
   }

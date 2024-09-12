@@ -1,56 +1,50 @@
-import express from "express"
-import Session from "express-session"
-import dotenv from "dotenv"
+import express from "express";
+import Session from "express-session";
+import dotenv from "dotenv";
 import morgan from "morgan";
-import cors from 'cors'
-import AuthRouter from "./Routes/Auth/Auth.routes.js"
-import climaRouter from "./Routes/clima/Clima.routes.js"
+import AuthRouter from "./Routes/Auth/Auth.routes.js";
+import CampoRouter from "./Routes/Campo/Campo.routes.js";
+import MarketRouter from "./Routes/Market/Market.routes.js"
+import DollarRouter from "./Routes/Dollar/Dollar.routes.js"
+import ClimaRouter from "./Routes/Clima/Clima.routes.js";
+import GeminiAIRouter from "./Routes/GeminiAI/GeminiAI.routes.js"
+import { __dirname } from "./Utils/RouteAbsolute.util.js";
+import path from "path";
+import cors from "cors";
 
-import { __dirname } from "./Utils/RouteAbsolute.util.js"
-import path from 'path'
 
-import swaggerjsdoc from 'swagger-jsdoc'
-import swaggerui from 'swagger-ui-express'
-
+import swaggerjsdoc from "swagger-jsdoc";
+import swaggerui from "swagger-ui-express";
 
 //Config to Express
-const app = express()
-const PORT = process.env.PORT || 3000
-const swaggerSpec ={
-    definition:{
-       "openapi":"3.0.0",
-        info:{
-            title:"Sistema AgroSmart API",
-            version:"1.0.0",            
-        },
-        servers:[
-            {
-                url:"https://agrosmart-e664.onrender.com/",
-            }
-        ]
-
+const app = express();
+const PORT = process.env.PORT || 3000;
+const swaggerSpec = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Sistema AgroSmart API",
+      version: "1.0.0",
     },
-    apis: [path.resolve(__dirname, '../Routes/Auth/*.js')],
-}
+    servers: [
+      {
+        url: "https://agrosmart-e664.onrender.com/",
+      },
+    ],
+  },
+  apis: [path.resolve(__dirname, "../Routes/Auth/*.js")],
+};
 
 const swagger = swaggerjsdoc(swaggerSpec);
-
-
-
 
 //Middlewares Global
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
-
-dotenv.config()
+dotenv.config();
 app.use(morgan("dev"));
-app.use('/api/doc', swaggerui.serve, swaggerui.setup(swagger));
-
-
-
-
+app.use("/api/doc", swaggerui.serve, swaggerui.setup(swagger));
 //Cookies
 app.use(
   Session({
@@ -62,7 +56,11 @@ app.use(
 );
 
 app.use("/api/v0/auth", AuthRouter);
-app.use("/api/v0/clima", climaRouter);
+app.use("/api/v0/clima", ClimaRouter);
+app.use("/api/v0/campo", CampoRouter);
+app.use("/api/v0/market", MarketRouter);
+app.use("/api/v0/dollar", DollarRouter);
+app.use("/api/v0/agroMentor", GeminiAIRouter)
 
 app.listen(PORT, () => {
   console.log(`Server Running On port ${PORT}`);
